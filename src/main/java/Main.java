@@ -16,7 +16,7 @@ public class Main {
             System.out.println("Сервер успешно запущен!");
             while (true) { // в цикле(!) принимаем подключения
                 try (
-                        Socket socket = new Socket("localhost", 8989);
+                        Socket socket = serverSocket.accept();
                         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         PrintWriter out = new PrintWriter(socket.getOutputStream())
                 ) {
