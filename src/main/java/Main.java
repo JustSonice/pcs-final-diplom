@@ -20,22 +20,15 @@ public class Main {
                         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         PrintWriter out = new PrintWriter(socket.getOutputStream())
                 ) {
-                    Scanner wordEnter = new Scanner(System.in);
-                    System.out.println("Введите слово для поиска:");
-                    String word = wordEnter.nextLine();
-                    if (word != null) {
-                        System.out.println("Поисковый запрос: " + word);
+                    String word = "Абстракция";
+                    System.out.println("Поисковый запрос: " + word);
 
-                        GsonBuilder builder = new GsonBuilder();
-                        Gson gson = builder.create();
+                    GsonBuilder builder = new GsonBuilder();
+                    Gson gson = builder.create();
 
-                        List<PageEntry> resp = engine.search(word);
-                        System.out.println("Результаты поиска: \n " + resp);
-                        out.println(gson.toJson(resp));
-                        break;
-                    } else {
-                        return;
-                    }
+                    List<PageEntry> resp = engine.search(word);
+                    System.out.println("Результаты поиска: \n " + resp);
+                    out.println(gson.toJson(resp));
                 } catch (IOException e) {
                     System.out.println("Невозможно запустить сервер!");
                     e.printStackTrace();
