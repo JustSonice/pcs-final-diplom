@@ -20,7 +20,7 @@ public class Main {
                         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         PrintWriter out = new PrintWriter(socket.getOutputStream())
                 ) {
-                    String word = "Абстракция";
+                    String word = "Кристофер";
                     System.out.println("Поисковый запрос: " + word);
 
                     GsonBuilder builder = new GsonBuilder();
