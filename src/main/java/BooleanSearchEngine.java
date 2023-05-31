@@ -9,27 +9,22 @@ import java.io.IOException;
 import java.util.*;
 
 public class BooleanSearchEngine implements SearchEngine {
-    Map<String, List<PageEntry>> indexing = new HashMap<>();
-    Set<String> unusefulWords = new HashSet<>();
+    protected Map<String, List<PageEntry>> indexing = new HashMap<>();
+    protected Set<String> unusefulWords = new HashSet<>();
 
     public BooleanSearchEngine(File pdfsDir) throws IOException {
         // прочтите тут все pdf и сохраните нужные данные,
         // тк во время поиска сервер не должен уже читать файлы
 
-        File folder = pdfsDir;
-        String text;
-        String[] words;
-        String fileName;
-        String absFileName;
 
-        for (File file : folder.listFiles()) {
-            fileName = file.getName();
-            absFileName = file.getAbsolutePath();
+        for (File file : Objects.requireNonNull(pdfsDir.listFiles())) {
+            String fileName = file.getName();
+            String absFileName = file.getAbsolutePath();
             var doc = new PdfDocument(new PdfReader(absFileName));
             for (int i = 1; i <= doc.getNumberOfPages(); i++) {
                 var page = doc.getPage(i);
-                text = PdfTextExtractor.getTextFromPage(page);
-                words = text.split("\\P{IsAlphabetic}+");
+                String text = PdfTextExtractor.getTextFromPage(page);
+                String[] words = text.split("\\P{IsAlphabetic}+");
 
                 Map<String, Integer> freqs = new HashMap<>();
                 for (var word : words) {
@@ -52,6 +47,9 @@ public class BooleanSearchEngine implements SearchEngine {
         }
 
     }
+
+
+
 
     private List<PageEntry> addLists(List<PageEntry> list1, List<PageEntry> list2) {
         List<PageEntry> res = new ArrayList<>();
