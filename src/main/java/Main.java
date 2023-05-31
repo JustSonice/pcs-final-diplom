@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
         try (ServerSocket serverSocket = new ServerSocket(8989)) {
             System.out.println("Сервер успешно запущен!");
@@ -30,9 +30,9 @@ public class Main {
                     out.println(gson.toJson(resp));
                 }
             }
-                } catch (IOException e) {
-                    System.out.println("Невозможно запустить сервер!");
-                    e.printStackTrace();
-                }
-            }
+        } catch (IOException e) {
+            System.out.println("Невозможно запустить сервер!");
+            e.printStackTrace();
         }
+    }
+}

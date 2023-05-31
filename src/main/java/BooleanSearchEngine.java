@@ -49,8 +49,6 @@ public class BooleanSearchEngine implements SearchEngine {
     }
 
 
-
-
     private List<PageEntry> addLists(List<PageEntry> list1, List<PageEntry> list2) {
         List<PageEntry> res = new ArrayList<>();
         List<PageEntry> tempList2 = new ArrayList<>(list2);
